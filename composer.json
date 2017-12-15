@@ -1,0 +1,44 @@
+{
+	"name": "charliedev/section-field",
+	"description": "Field type that allows the selection of Craft sections.",
+	"type": "craft-plugin",
+	"version": "0.0.1",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Charlie Development",
+			"email": "support@charliedev.com",
+			"homepage": "http://charliedev.com/"
+		}
+	],
+	"keywords": [
+		"craft",
+		"cms",
+		"craftcms",
+		"section",
+		"field"
+	],
+	"support": {
+		"issues": "https://github.com/charliedevelopment/craft3-section-field/issues?state=open",
+		"source": "https://github.com/charliedevelopment/craft3-section-field",
+		"email": "support@charliedev.com"
+	},
+	"require": {
+		"craftcms/cms": "^3.0.0-RC1"
+	},
+	"autoload": {
+		"psr-4": {
+			"charliedev\\sectionfield\\": "src/"
+		}
+	},
+	"extra": {
+		"name": "Section Field",
+		"handle": "section-field",
+		"changelogUrl": "https://raw.githubusercontent.com/charliedevelopment/craft3-section-field/master/CHANGELOG.md",
+		"downloadUrl": "https://github.com/charliedevelopment/craft3-section-field/archive/master.zip",
+		"schemaVersion": "0.0.1",
+		"hasCpSettings": false,
+		"hasCpSection": false,
+		"class": "charliedev\\sectionfield\\SectionField"
+	}
+}
