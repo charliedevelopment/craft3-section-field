@@ -1,0 +1,18 @@
+{% import '_includes/forms' as forms %}
+
+{{ forms.checkboxGroupField({
+	label : 'Allowed Sections' | t('section-field'),
+	instructions : 'The sections that may be chosen for this field.' | t('section-field'),
+	id : 'whitelistedSections',
+	name : 'whitelistedSections',
+	values: field.whitelistedSections,
+	options : sections
+}) }}
+
+{{ forms.checkboxField({
+	label : 'Allow Multiple' | t('section-field'),
+	instructions : 'If checked, the user can select multiple sections, otherwise they can only select one.' | t('section-field'),
+	id : 'allowMultiple',
+	name : 'allowMultiple',
+	checked: field.allowMultiple
+}) }}

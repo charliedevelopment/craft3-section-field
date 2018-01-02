@@ -39,6 +39,6 @@
 		"schemaVersion": "0.0.1",
 		"hasCpSettings": false,
 		"hasCpSection": false,
-		"class": "charliedev\\sectionfield\\SectionField"
+		"class": "charliedev\\sectionfield\\Section"
 	}
 }

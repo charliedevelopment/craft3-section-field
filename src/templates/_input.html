@@ -1,0 +1,22 @@
+{% import '_includes/forms' as forms %}
+
+{% if field.allowMultiple %}
+	{{ forms.checkboxGroup({
+		id : field.handle,
+		name : field.handle,
+		values: value,
+		placeholder: 'Choose Sections...' | t,
+		options: sections
+	}) }}
+{% else %}
+	{{ forms.radioGroup({
+		id : field.handle,
+		name : field.handle,
+		value: value,
+		placeholder: 'Choose a Section...' | t,
+		options: sections
+	}) }}
+	{% if value is iterable %}
+		<p class="warning">{{ "Multiple sections selected, but field only allows one section. Selecting a new value will clear the existing multiple section selection." | t }}</p>
+	{% endif %}
+{% endif %}

@@ -42,7 +42,7 @@ composer require charliedev/section-field
 
 ### Editing a Section Field
 
-The form controls for a section field are generated according to that individual field's configuration.
+The form controls for a section field are generated according to that individual field's configuration. A field is configured with a whitelist of allowed sections to use, and sections available on an entry are a combination of the whitelist and the sections the current user is allowed to edit.
 
 * If only one selection is allowed, the field is a set of radio buttons. If the field is not required, an additional "None" option is provided, and will be selected by default.
 
