@@ -57,11 +57,11 @@ See the example below, where `mySectionField` is a section field that determines
 ```twig
 {% set sections = entry.mySectionField %}
 
-{% set entries = craft.entries.sectionId(sections) %}
+{% set sectionEntries = craft.entries.sectionId(sections) %}
 
-{% for entry in entries %}
+{% for sectionEntry in sectionEntries %}
 
-	{# Display entry #}
+	{# Display sectionEntry #}
 
 {% endfor %}
 ```
