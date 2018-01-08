@@ -5,7 +5,7 @@
 		id : field.handle,
 		name : field.handle,
 		values: value,
-		placeholder: 'Choose Sections...' | t,
+		placeholder: 'Choose Sections...' | t('section-field'),
 		options: sections
 	}) }}
 {% else %}
@@ -13,10 +13,10 @@
 		id : field.handle,
 		name : field.handle,
 		value: value,
-		placeholder: 'Choose a Section...' | t,
+		placeholder: 'Choose a Section...' | t('section-field'),
 		options: sections
 	}) }}
 	{% if value is iterable %}
-		<p class="warning">{{ "Multiple sections selected, but field only allows one section. Selecting a new value will clear the existing multiple section selection." | t }}</p>
+		<p class="warning">{{ "Multiple sections selected, but field only allows one section. Selecting a new value will clear the existing multiple section selection." | t('section-field') }}</p>
 	{% endif %}
 {% endif %}

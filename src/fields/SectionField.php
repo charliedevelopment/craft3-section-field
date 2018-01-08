@@ -110,7 +110,7 @@ class SectionField extends Field implements PreviewableFieldInterface
 		$whitelist = array_flip($this->whitelistedSections); // Get all whitelisted sections.
 		$whitelist[''] = true; // Add a blank entry in, in case the field's options allow a 'None' selection.
 		if (!$this->allowMultiple && !$this->required) { // Add a 'None' option specifically for optional, single value fields.
-			$sections = array('' => 'None') + $sections;
+			$sections = array('' => Craft::t('app', 'None')) + $sections;
 		}
 		$whitelist = array_intersect_key($sections, $whitelist); // Discard any sections not available within the whitelist.
 		
@@ -158,7 +158,7 @@ class SectionField extends Field implements PreviewableFieldInterface
 	private function getSections() {
 		$sections = array();
 		foreach (Craft::$app->getSections()->getEditableSections() as $section) {
-			$sections[$section->id] = $section->name;
+			$sections[$section->id] = Craft::t('site', $section->name);
 		}
 		return $sections;
 	}
