@@ -142,6 +142,10 @@ class SectionField extends Field implements PreviewableFieldInterface
 	public function validateSections(ElementInterface $element)
 	{
 		$value = $element->getFieldValue($this->handle);
+		
+		if (!is_array($value)) {
+			$value = [$value];
+		}
 
 		$sections = $this->getSections();
 
