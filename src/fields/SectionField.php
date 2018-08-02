@@ -11,6 +11,8 @@ use craft\base\ElementInterface;
 use craft\base\Field;
 use craft\base\PreviewableFieldInterface;
 
+use craft\helpers\Json;
+
 use yii\db\Schema;
 
 /**
@@ -78,7 +80,7 @@ class SectionField extends Field implements PreviewableFieldInterface
 	public function rules(): array
 	{
 		$rules = parent::rules();
-		
+
 		$rules[] = [['whitelistedSections'], 'validateSectionWhitelist'];
 
 		return $rules;
@@ -99,7 +101,7 @@ class SectionField extends Field implements PreviewableFieldInterface
 			}
 		}
 	}
-	
+
 	/**
 	 * @inheritdoc
 	 * @see craft\base\Field
@@ -113,7 +115,7 @@ class SectionField extends Field implements PreviewableFieldInterface
 			$sections = array('' => Craft::t('app', 'None')) + $sections;
 		}
 		$whitelist = array_intersect_key($sections, $whitelist); // Discard any sections not available within the whitelist.
-		
+
 		return Craft::$app->getView()->renderTemplate(
 			'section-field/_input', [
 				'field' => $this,
@@ -142,7 +144,7 @@ class SectionField extends Field implements PreviewableFieldInterface
 	public function validateSections(ElementInterface $element)
 	{
 		$value = $element->getFieldValue($this->handle);
-		
+
 		if (!is_array($value)) {
 			$value = [$value];
 		}
@@ -156,8 +158,48 @@ class SectionField extends Field implements PreviewableFieldInterface
 		}
 	}
 
+	public function normalizeValue($value, ElementInterface $element = null)
+	{
+		// Convert string representation from db into plain array/int.
+		if (is_string($value)) {
+			$value = Json::decodeIfJson($value);
+		}
+
+		if (is_int($value)
+			&& $this->allowMultiple) {
+			// Int, but field allows multiple, convert to array.
+			$value = [$value];
+		} else if (is_array($value)
+			&& !$this->allowMultiple
+			&& count($value) == 1) {
+			// Array, but field allows only one, if single value, convert.
+			$value = intval($value[0]);
+		}
+
+		// Convert string IDs to integers (for pre 1.1.0 data).
+		if (is_array($value)) {
+			foreach ($value as $key => $id) {
+				$value[$key] = intval($id);
+			}
+		}
+
+		return $value;
+	}
+
+	public function serializeValue($value, ElementInterface $element = null)
+	{
+		// Convert string IDs to integers for storage.
+		if (is_array($value)) {
+			foreach ($value as $key => $id) {
+				$value[$key] = intval($id);
+			}
+		}
+
+		return Json::encode($value);
+	}
+
 	/**
-	 * Retrieves all sections in an id, name pair, suitable for the underlying options display.
+	 * Retrieves all sections in an id-name pair, suitable for the underlying options display.
 	 */
 	private function getSections() {
 		$sections = array();

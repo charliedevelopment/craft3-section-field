@@ -1,5 +1,11 @@
 ## [Unreleased]
 
+### Added
+- Better data normalization when storing/retrieving from db (IDs provided are integers instead of strings, arrays <=> integers if field configuration changes).
+
+### Fixed
+- Multiple selections being returned as unparsed JSON strings.
+
 ## [1.0.1] 2018-01-31
 
 ### Fixed
