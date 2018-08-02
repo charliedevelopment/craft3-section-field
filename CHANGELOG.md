@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+## [1.1.0] 2018-08-02
+
 ### Added
 - Better data normalization when storing/retrieving from db (IDs provided are integers instead of strings, arrays <=> integers if field configuration changes).
 
